@@ -63,13 +63,11 @@ def get_top_comments(data):
 
 def calculate_overall_sentiment(data):
     """
-    Calculates overall sentiment for the dataset.
+    Calculates overall sentiment for the dataset based on the count of sentiments.
     """
-    avg_compound_score = data['Compound Score'].mean()
+    sentiment_counts = data['Sentiment'].value_counts()
 
-    if avg_compound_score > 0.05:
-        return 'Positive'
-    elif avg_compound_score < -0.05:
-        return 'Negative'
-    else:
-        return 'Neutral'
+    # Determine the sentiment with the highest count
+    overall_sentiment = sentiment_counts.idxmax()
+
+    return overall_sentiment

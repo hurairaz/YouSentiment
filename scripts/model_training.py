@@ -1,5 +1,6 @@
 import logging
 import joblib
+import tempfile
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import RandomOverSampler
@@ -9,7 +10,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
+temp_dir = tempfile.TemporaryDirectory()
 
 def vectorize_text(data):
     """
@@ -62,19 +63,20 @@ def evaluate_model_performance(model, X_test, y_test):
 
 def save_model(model, filename):
     """
-    Saves a model using joblib.
+    Saves a model using joblib in a temporary directory.
     """
-    joblib.dump(model, f'models/{filename}.pkl')
-    logging.info(f"Model saved as 'models/{filename}.pkl'")
+    file_path = f"{temp_dir.name}/{filename}.pkl"
+    joblib.dump(model, file_path)
+    logging.info(f"Model saved as '{file_path}'")
 
 
 def load_model(filename):
     """
-    Loads a model using joblib.
+    Loads a model using joblib from the temporary directory.
     """
-    return joblib.load(f'models/{filename}.pkl')
-
-
+    file_path = f"{temp_dir.name}/{filename}.pkl"
+    logging.info(f"Loading model from '{file_path}'")
+    return joblib.load(file_path)
 def run_training_pipeline(data):
     """
     Runs the entire training pipeline, trains models, and calculates performance metrics.
