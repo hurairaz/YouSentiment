@@ -1,0 +1,27 @@
+[theme]
+# Main background color (black for a sleek look)
+backgroundColor = "#000000"  # Black background
+
+# Main text color (light gray for readability against black background)
+textColor = "#F0F0F0"  # Light gray text
+
+# Header color (aligns with the theme, slightly brighter for emphasis)
+primaryColor = "#FA5252"  # Dodger Blue (used for headers and key highlights)
+
+# Secondary elements color (a muted shade for secondary highlights)
+secondaryBackgroundColor = "#333333"  # Dark Gray (for secondary containers like sidebars)
+
+# Font settings
+font = "sans serif"  # Modern sans-serif font for a clean appearance
+
+[server]
+# Automatically reload when the script is updated
+headless = true
+enableCORS = false
+
+[global]
+# Custom favicon (use your project icon)
+favicon = "assets/YouSentiment-icon.png"  # Path to your app icon
+
+# Custom title for the browser tab
+title = "You Sentiment"
